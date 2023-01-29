@@ -13,12 +13,15 @@ const getCombinations = (arr, selectNumber)=>{
 }
 
 
-
+const targetClear = () => {
+    console.log(document.querySelector('tbody tr'))
+    document.querySelector("tbody")?.remove();
+}
 
 
 
 let submitBtn = document.querySelector('.submit-btn');
-
+let clearBtn = document.querySelector('.clear-btn');
 submitBtn.addEventListener('click',()=>{
     let isError = false
     let errMessage;
@@ -38,9 +41,8 @@ submitBtn.addEventListener('click',()=>{
     if (!isError) {
         let resultNum = getCombinations(numList, 6);
         resultNum.map((x) => console.log(x));
-        for (let i = 0; i < resultNum.length; i++) {
-            document.querySelector("tbody").innerHTML += `<tr></tr>`
-        }
+        targetClear();
+        document.querySelector('table').innerHTML += `<tbody></tbody>`;
         resultNum.map((numList,index)=>{
             document.querySelector("tbody").innerHTML += `<tr>
               <td class="row-num">${index+1}</td>
@@ -57,7 +59,9 @@ submitBtn.addEventListener('click',()=>{
     }
 });
 
-
+clearBtn.addEventListener('click',()=>{
+    targetClear()
+})
 
 
 // 경우의 수 리스트 조회
