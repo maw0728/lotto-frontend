@@ -1,4 +1,4 @@
-// 경우의 수
+// 입력한 숫자들의 경우의 수(조합)
 const getCombinations = (arr, selectNumber)=>{
     const results = [];
     if (selectNumber === 1) return arr.map((value)=>[value])
@@ -9,16 +9,27 @@ const getCombinations = (arr, selectNumber)=>{
         const attached = combinations.map((combination)=>[fixed, ...combination]);
         results.push(...attached)
     })
+
     return results;
 }
 
 
 const targetClear = () => {
-    console.log(document.querySelector('tbody tr'))
-    document.querySelector("tbody")?.remove();
+    let trSelector = document.querySelector('tbody tr');
+    if (trSelector !== null){
+        document.querySelector("tbody")?.remove();
+    }
 }
 
-
+// 랜덤 20가지의 경우의 수 출력
+const randomPrint = (arr) => {
+    let newRandomArr = [];
+    for (let i = 0; i < 20; i++) {
+        let randomNum = arr[Math.floor(Math.random()*arr.length)];
+        newRandomArr.push(randomNum);
+    }
+    return newRandomArr;
+}
 
 let submitBtn = document.querySelector('.submit-btn');
 let clearBtn = document.querySelector('.clear-btn');
@@ -26,10 +37,10 @@ submitBtn.addEventListener('click',()=>{
     let isError = false
     let errMessage;
     let numList = [];
-    let result;
+    // let result;
     let numInputList = document.getElementsByClassName('user-num');
     for (let i = 0; i < 10; i++) {
-        let targetNum = numInputList.item(i).valueAsNumber
+        let targetNum = numInputList.item(i).valueAsNumber;
         if (targetNum > 0 && targetNum < 46) {
             numList.push(targetNum);
         } else {
@@ -40,10 +51,12 @@ submitBtn.addEventListener('click',()=>{
 
     if (!isError) {
         let resultNum = getCombinations(numList, 6);
-        resultNum.map((x) => console.log(x));
+
+        // 기획 변경.. 경우의 수 출력 후 랜덤으로 20가지만 저장
+        let newRandomArr = randomPrint(resultNum);
         targetClear();
         document.querySelector('table').innerHTML += `<tbody></tbody>`;
-        resultNum.map((numList,index)=>{
+        newRandomArr.map((numList,index)=>{
             document.querySelector("tbody").innerHTML += `<tr>
               <td class="row-num">${index+1}</td>
               <td>${numList[0]}</td>
@@ -61,22 +74,9 @@ submitBtn.addEventListener('click',()=>{
 
 clearBtn.addEventListener('click',()=>{
     targetClear()
-})
+});
 
-
-// 경우의 수 리스트 조회
-// let searchBtn = document.getElementById('searchBtn');
-// searchBtn.addEventListener('click', /*리스트조회함수*/)
-
-
-// const getList = (arr) =>{
-//     document.getElementById('result').innerText = arr;
-//     console.log('lotto 경우의 수', arr)
-// }
-
-// 테스트용
+/* 테스트용
 const testArr = [1,3,4,5,11,13,17,22,37,41]
 const result = getCombinations(testArr, 6);
-console.log(result);
-result.map(x => console.log(x));
-
+*/

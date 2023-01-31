@@ -62,11 +62,27 @@ body {
 table {
     margin: auto;
 }
+
+table thead tr th{
+    background-color: yellow;
+}
+
 td {
     border: solid 1px black;
     width: 40px;
+    height: 30px;
+    vertical-align: middle;
 }
+
 .row-num {
     background: yellow;
     font-weight: bold;
+}
+
+table tr:nth-child(even){
+    background-color: #bbdefb;
+}
+
+table tr:nth-child(odd){
+    background-color: #e3f2fd;
 }
