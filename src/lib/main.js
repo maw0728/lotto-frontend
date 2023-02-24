@@ -1,3 +1,5 @@
+const RANDOM_PRINT_COUNT = 20; // 랜덤 출력할 경우의 수
+
 // 입력한 숫자들의 경우의 수(조합)
 const getCombinations = (arr, selectNumber)=>{
     const results = [];
@@ -9,26 +11,26 @@ const getCombinations = (arr, selectNumber)=>{
         const attached = combinations.map((combination)=>[fixed, ...combination]);
         results.push(...attached)
     })
-
     return results;
 }
 
+// 랜덤 섞기 후 20가지 배열 생성 함수
+const shuffle = (arr) => {
+    arr.sort(()=>Math.random() - 0.5);
+    arr.length=RANDOM_PRINT_COUNT;
+    return arr;
+}
+
+// form 중복 숫자 입력 체크 함수
+const hasDuplicates = (arr) => {
+    return arr.some(x => arr.indexOf(x) !== arr.lastIndexOf(x));
+}
 
 const targetClear = () => {
     let trSelector = document.querySelector('tbody tr');
     if (trSelector !== null){
         document.querySelector("tbody")?.remove();
     }
-}
-
-// 랜덤 20가지의 경우의 수 출력
-const randomPrint = (arr) => {
-    let newRandomArr = [];
-    for (let i = 0; i < 20; i++) {
-        let randomNum = arr[Math.floor(Math.random()*arr.length)];
-        newRandomArr.push(randomNum);
-    }
-    return newRandomArr;
 }
 
 let submitBtn = document.querySelector('.submit-btn');
@@ -45,15 +47,20 @@ submitBtn.addEventListener('click',()=>{
             numList.push(targetNum);
         } else {
             isError = true;
-            errMessage = '입력이 잘못 되었습니다 다시확인해주세요'
+            errMessage = '입력이 잘못 되었습니다. 다시확인해주세요.'
         }
+    }
+    if (hasDuplicates(numList)){
+        isError=true;
+        errMessage='중복 입력된 숫자가 존재합니다. 다시 확인해주세요.'
     }
 
     if (!isError) {
+       numList.sort((a,b)=>a-b);
         let resultNum = getCombinations(numList, 6);
-
         // 기획 변경.. 경우의 수 출력 후 랜덤으로 20가지만 저장
-        let newRandomArr = randomPrint(resultNum);
+        let newRandomArr = shuffle(resultNum);
+       /* console.log(getElCount(newRandomArr))*/
         targetClear();
         document.querySelector('table').innerHTML += `<tbody></tbody>`;
         newRandomArr.map((numList,index)=>{
@@ -76,7 +83,11 @@ clearBtn.addEventListener('click',()=>{
     targetClear()
 });
 
-/* 테스트용
-const testArr = [1,3,4,5,11,13,17,22,37,41]
-const result = getCombinations(testArr, 6);
-*/
+/*중복 횟수 테스트 함수*/
+/*const getElCount = (arr) =>{
+    let result ={}
+    for (const el of arr){
+        result[el] = (result[el]||0) +1;
+    }
+    return result;
+}*/
