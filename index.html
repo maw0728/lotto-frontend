@@ -6,59 +6,64 @@
   <title>lotto</title>
 </head>
 <body>
-<section class="user-input">
-  <div>
+<section class="content_all">
+  <section class="user-input">
     <div>
-      <label>1</label>
-      <input type="number" class="user-num">
+      <div>
+        <label>1</label>
+        <input type="number" class="user-num">
+      </div>
+      <div>
+        <label>2</label>
+        <input type="number" class="user-num">
+      </div>
+      <div>
+        <label>3</label>
+        <input type="number" class="user-num">
+      </div>
+      <div>
+        <label>4</label>
+        <input type="number" class="user-num">
+      </div>
+      <div>
+        <label>5</label>
+        <input type="number" class="user-num">
+      </div>
+      <div>
+        <label>6</label>
+        <input type="number" class="user-num">
+      </div>
+      <div>
+        <label>7</label>
+        <input type="number" class="user-num">
+      </div>
+      <div>
+        <label>8</label>
+        <input type="number" class="user-num">
+      </div>
+      <div>
+        <label>9</label>
+        <input type="number" class="user-num">
+      </div>
+      <div>
+        <label>10</label>
+        <input type="number" class="user-num">
+      </div>
     </div>
     <div>
-      <label>2</label>
-      <input type="number" class="user-num">
+      <button hidden>추가</button>
+      <button hidden>삭제</button>
+      <button class="submit-btn">확인</button>
+      <button class="clear-btn">초기화</button>
     </div>
-    <div>
-      <label>3</label>
-      <input type="number" class="user-num">
-    </div>
-    <div>
-      <label>4</label>
-      <input type="number" class="user-num">
-    </div>
-    <div>
-      <label>5</label>
-      <input type="number" class="user-num">
-    </div>
-    <div>
-      <label>6</label>
-      <input type="number" class="user-num">
-    </div>
-    <div>
-      <label>7</label>
-      <input type="number" class="user-num">
-    </div>
-    <div>
-      <label>8</label>
-      <input type="number" class="user-num">
-    </div>
-    <div>
-      <label>9</label>
-      <input type="number" class="user-num">
-    </div>
-    <div>
-      <label>10</label>
-      <input type="number" class="user-num">
-    </div>
-  </div>
-  <div>
-    <button hidden>추가</button>
-    <button hidden>삭제</button>
-    <button class="submit-btn">확인</button>
-    <button class="clear-btn">초기화</button>
-  </div>
-</section>
-<section class="result">
-  <table>
-    <thead>
+  </section>
+  <section class="result">
+    <table id="products">
+      <form action="" id="setRows">
+          <input hidden type="text" name="rowPerPage" value="15">
+        </p>
+      </form>
+      <thead>
       <tr>
         <th>순번</th>
         <th>번호1</th>
@@ -68,11 +73,11 @@
         <th>번호5</th>
         <th>번호6</th>
       </tr>
-    </thead>
-    <tbody>
-    </tbody>
-  </table>
+      </thead>
+    </table>
+  </section>
 </section>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="src/lib/main.js"></script>
 </body>
 </html>

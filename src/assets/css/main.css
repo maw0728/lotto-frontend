@@ -19,9 +19,9 @@ figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
     margin: 0;
-    padding: 0;
+    padding: 5px;
     border: 0;
-    font-size: 100%;
+    font-size: x-large;
     /*font: inherit;*/
     vertical-align: baseline;
 }
@@ -49,14 +49,16 @@ table {
     border-spacing: 0;
 }
 
-
+input, label, button {
+    font-size: x-large;
+}
 
 /* 커스텀 영역 */
 body {
     font-family: 'Noto Sans KR', sans-serif;
     font-weight: 400;
     text-align: center;
-    margin: 0 auto;
+   /* margin: 0 auto;*/
     height: 100%;
 }
 table {
@@ -69,9 +71,15 @@ table thead tr th{
 
 td {
     border: solid 1px black;
-    width: 40px;
-    height: 30px;
+    padding: 10px;
+/*    width: 40px;
+    height: 30px;*/
     vertical-align: middle;
+}
+
+.content_all {
+    display: flex;
+    justify-content: center;
 }
 
 .row-num {
@@ -85,4 +93,24 @@ table tr:nth-child(even){
 
 table tr:nth-child(odd){
     background-color: #e3f2fd;
+}
+
+
+.off-screen {
+    display: none;
+}
+#pagination {
+    text-align: center;
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+#pagination a {
+    background: #ccc;
+    color: #000;
+    text-decoration: none;
+}
+#pagination a.active {
+    background: #333;
+    color: #fff;
 }
